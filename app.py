@@ -7,6 +7,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 # Import other necessary modules and functions
 
 app = Flask(__name__)
@@ -30,11 +31,12 @@ class CheckedPassword(db.Model):
     password_hash = db.Column(db.String(128), nullable=False)
     result = db.Column(db.Boolean, nullable=False)
 
-@app.route("/") # <--- Add GET and POST methods!!!!!
-@login_required
+@app.route("/")
 def index():
-    # Index page
-    return render_template('index.html')
+    if current_user.is_authenticated:
+        return render_template('index.html')
+    else:
+        return render_template('welcome.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
