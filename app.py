@@ -16,7 +16,8 @@ db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-class User(db.Model):
+# User model must inherit from UserMixin
+class User(UserMixin,db.Model):
     # Define your User model with fields for username, hashed password, etc.
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), unique=True, nullable=False)
