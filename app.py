@@ -2,7 +2,7 @@ import os
 import datetime
 
 from cs50 import SQL
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, login_user
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -62,8 +62,23 @@ def load_user(user_id):
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    # handle user login
-    pass
+    # Handle user login
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+
+        # Query the database for the user
+        user = User.query.filter_by(username=username).first()
+
+        # Check if user exists and password is correct
+        if user and check_password_hash(user.password_hash, password):
+            # Log the user in
+            login_user(user)
+            return redirect(url_for('index'))
+        else:
+            return 'Invalid username or password'
+
+    return render_template('login.html')
 
 @app.route('/check_password', methods=['POST'])
 def check_password():
