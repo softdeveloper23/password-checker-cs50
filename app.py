@@ -6,14 +6,14 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
-# import other necessary modules and functions
+# Import other necessary modules and functions
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'  # or other database URI
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'  # Or other database URI
 db = SQLAlchemy(app)
 
 class User(db.Model):
-    # define your User model with fields for username, hashed password, etc.
+    # Define your User model with fields for username, hashed password, etc.
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
@@ -21,13 +21,34 @@ class User(db.Model):
 @app.route("/")
 @login_required
 def index():
-    # index page
+    # Index page
     pass
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    # handle user registration
-    pass
+    # Handle user registration
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+
+        # Check if username is already taken
+        user = User.query.filter_by(username=username).first()
+        if user:
+            return 'Username already exists. Please choose another username.'
+
+        # Hash the password
+        password_hash = generate_password_hash(password)
+
+        # Create a new user instance
+        new_user = User(username=username, password_hash=password_hash)
+
+        # Add the new user to the database
+        db.session.add(new_user)
+        db.session.commit()
+
+        return 'Registered successfully!'
+        # redirect to login page
+    return render_template('register.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
