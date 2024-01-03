@@ -61,15 +61,7 @@
         <main>
             {% block content %}{% endblock %}
         </main>
-            <!-- Get the current year for the footer -->
-            <script>
-                // Get the current year
-                var currentYear = new Date().getFullYear();
 
-                // Update the year in the HTML
-                document.getElementById("currentYear").textContent = currentYear;
-            </script>
-            <!-- Typing effect script for p1 -->
             <script>
                 // Typing effect script for p1
                 var i = 0;
@@ -109,4 +101,13 @@
             Created by Brannon Garrett &copy; <span id="currentYear"></span>
         </p>
     </footer>
+
+    <!-- Get the current year for the footer -->
+    <script>
+        // Get the current year
+        var currentYear = new Date().getFullYear();
+
+        // Update the year in the HTML
+        document.getElementById("currentYear").textContent = currentYear;
+    </script>
 </html>
