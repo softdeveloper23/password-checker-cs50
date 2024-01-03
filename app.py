@@ -19,6 +19,15 @@ db = SQLAlchemy(app)
 with app.app_context():
     db.create_all()
 
+# Ensure templates are auto-reloaded
+@app.after_request
+def after_request(response):
+    """Ensure responses aren't cached"""
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Expires"] = 0
+    response.headers["Pragma"] = "no-cache"
+    return response
+
 # Initialize Flask-Login
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -65,8 +74,11 @@ def register():
         db.session.add(new_user)
         db.session.commit()
 
-        return 'Registered successfully!'
+        # Flash a success message
+
         # redirect to login page
+        return redirect(url_for('login'))
+
     return render_template('register.html')
 
 # User loader callback for Flask-Login
