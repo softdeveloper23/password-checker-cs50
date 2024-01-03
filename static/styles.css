@@ -24,6 +24,15 @@ main {
     padding: 20px;
 }
 
+/* Container styling */
+.container-fluid {
+    background-color: black;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(97, 90, 90, 0.1);
+    height: 400px;
+}
+
 /* Form styling */
 form {
     background-color: #ffffff;
