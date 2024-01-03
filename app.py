@@ -3,7 +3,6 @@ import datetime
 import requests
 import hashlib
 
-from cs50 import SQL
 from flask import Flask, render_template, request, redirect, url_for, session, login_user
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
@@ -24,6 +23,12 @@ class User(UserMixin,db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
+
+# Create a model for storing the checked passwords
+class CheckedPassword(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    password_hash = db.Column(db.String(128), nullable=False)
+    result = db.Column(db.Boolean, nullable=False)
 
 @app.route("/") # <--- Add GET and POST methods!!!!!
 @login_required
@@ -91,6 +96,9 @@ def check_password():
         response = requests.get(f'https://api.pwnedpasswords.com/range/{prefix}')
         hashes = (line.split(':') for line in response.text.splitlines())
         count = next((int(count) for t, count in hashes if t == suffix), 0)
+
+        # Store the checked password and result in the database
+
 
         if count:
             return f'The password has been found! This password has been seen {count} times before', 200
