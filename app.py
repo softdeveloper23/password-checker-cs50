@@ -113,5 +113,11 @@ def check_password():
             return 'The password has not been found!', 200
     return render_template('check_password.html')
 
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('index'))  # Or redirect to any other page
+
 if __name__ == '__main__':
     app.run(debug=True)

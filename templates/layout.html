@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+        <header>
+            <!-- Header content goes here -->
+        </header>
+
+        <nav>
+            <!-- Navigation content goes here -->
+            
+        </nav>
+
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer>
+            <!-- FILEPATH: /C:/Users/Asus/Desktop/project/templates/layout.html -->
+            <!-- BEGIN: copyright -->
+            <footer>
+                <p id="copyright">
+                    Created by Brannon Garrett &copy; <span id="currentYear"></span>
+                </p>
+            </footer>
+
+            <script>
+                // Get the current year
+                var currentYear = new Date().getFullYear();
+
+                // Update the year in the HTML
+                document.getElementById("currentYear").textContent = currentYear;
+            </script>
+            <!-- END: copyright -->
+        </footer>
+    </body>
+</html>
