@@ -6,11 +6,13 @@
 
 
 {% block content %}
-    <h1>Check Any Password</h1>
-        <p>Enter a password to see if it has been compromised.</p>
-        <form action="/check_password" method="post">
-            <label for="password">Password:</label><br>
-            <input type="password" id="password" name="password" required><br>
-            <input type="submit" value="Check Password">
-        </form>
+    <div class="container-fluid">
+        <p id="p3">Check any password</p>
+            <p id="p4"></p>
+            <form action="/check_password" method="post">
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" name="password" required><br>
+                <input type="submit" value="Check Password">
+            </form>
+    </div>
 {% endblock %}

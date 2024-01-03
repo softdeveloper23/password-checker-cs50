@@ -82,6 +82,7 @@ footer {
 
 #p1 {
     font-size: 4vw; /* Adjust the size as needed */
+    font-weight: bold;
     font-family: 'Courier', sans-serif;
     text-align: center;
     color: orange;
@@ -89,6 +90,23 @@ footer {
 
   #p2 {
     font-size: 2vw; /* Adjust the size as needed */
+    font-weight: bold;
+    font-family: 'Courier', sans-serif;
+    text-align: center;
+    color: white;
+  }
+
+  #p3 {
+    font-size: 2vw; /* Adjust the size as needed */
+    font-weight: bold;
+    font-family: 'Courier', sans-serif;
+    text-align: center;
+    color: orange;
+  }
+
+  #p4 {
+    font-size: 1vw; /* Adjust the size as needed */
+    font-weight: bold;
     font-family: 'Courier', sans-serif;
     text-align: center;
     color: white;
@@ -96,6 +114,7 @@ footer {
 
   #site_access {
     font-size: 3vw; /* Adjust the size as needed */
+    font-weight: bold;
     font-family: 'Courier', sans-serif;
     text-align: center;
     color: black;

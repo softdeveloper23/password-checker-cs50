@@ -95,6 +95,26 @@
                 typeWriter1();
                 });
                 </script>
+
+                <script>
+                // Typing effect script for p4
+                var c = 0;
+                var txt = 'Enter a password to see if it has been compromised.'; /* The text you want to type out */
+                var speed = 80; /* The speed/duration of the effect in milliseconds */
+
+                function typeWriter3() {
+                if (c < txt.length) {
+                    document.getElementById("p4").innerHTML += txt.charAt(c);
+                    c++;
+                    setTimeout(typeWriter3, speed);
+                }
+                }
+
+                // Call the function when the DOM is fully loaded
+                document.addEventListener("DOMContentLoaded", function(event) { 
+                typeWriter3();
+                });
+                </script>
     </body>
     <footer>
         <p id="copyright">
