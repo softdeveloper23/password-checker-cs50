@@ -69,6 +69,40 @@
                 // Update the year in the HTML
                 document.getElementById("currentYear").textContent = currentYear;
             </script>
+            <!-- Typing effect script for p1 -->
+            <script>
+                // Typing effect script for p1
+                var i = 0;
+                var txt1 = "Is your password safe???"; // The text you want to type out for p1
+                var speed = 80; // The speed/duration of the effect in milliseconds
+
+                function typeWriter1() {
+                if (i < txt1.length) {
+                    document.getElementById("p1").innerHTML += txt1.charAt(i);
+                    i++;
+                    setTimeout(typeWriter1, speed);
+                } else {
+                    typeWriter2(); // Call the function for p2 after p1 is done
+                }
+                }
+
+                // Typing effect script for p2
+                var j = 0;
+                var txt2 = "Let's find out!"; // The text you want to type out for p2
+
+                function typeWriter2() {
+                if (j < txt2.length) {
+                    document.getElementById("p2").innerHTML += txt2.charAt(j);
+                    j++;
+                    setTimeout(typeWriter2, speed);
+                }
+                }
+
+                // Call the function for p1 when the DOM is fully loaded
+                document.addEventListener("DOMContentLoaded", function(event) {
+                typeWriter1();
+                });
+                </script>
     </body>
     <footer>
         <p id="copyright">
