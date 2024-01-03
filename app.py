@@ -34,7 +34,7 @@ class CheckedPassword(db.Model):
 @login_required
 def index():
     # Index page
-    pass
+    return render_template('index.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
