@@ -1,5 +1,7 @@
 import os
 import datetime
+import requests
+import hashlib
 
 from cs50 import SQL
 from flask import Flask, render_template, request, redirect, url_for, session, login_user
@@ -82,9 +84,19 @@ def login():
 
 @app.route('/check_password', methods=['POST'])
 def check_password():
-    # check a password using your pwned_api_check function
-    # store the checked password in the database
-    pass
+    if request.method == 'POST':
+        password = request.form.get('password')
+        hash = hashlib.sha1(password.encode('utf-8')).hexdigest().upper()
+        prefix, suffix = hash[:5], hash[5:]
+        response = requests.get(f'https://api.pwnedpasswords.com/range/{prefix}')
+        hashes = (line.split(':') for line in response.text.splitlines())
+        count = next((int(count) for t, count in hashes if t == suffix), 0)
+
+        if count:
+            return f'The password has been found! This password has been seen {count} times before', 200
+        else:
+            return 'The password has not been found!', 200
+    return render_template('check_password.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
