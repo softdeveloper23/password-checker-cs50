@@ -14,7 +14,9 @@ db = SQLAlchemy(app)
 
 class User(db.Model):
     # define your User model with fields for username, hashed password, etc.
-    pass
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(64), unique=True, nullable=False)
+    password_hash = db.Column(db.String(128), nullable=False)
 
 @app.route("/")
 @login_required
