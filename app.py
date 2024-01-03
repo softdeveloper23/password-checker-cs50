@@ -55,6 +55,11 @@ def register():
         # redirect to login page
     return render_template('register.html')
 
+# User loader callback for Flask-Login
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     # handle user login
