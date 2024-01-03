@@ -23,7 +23,7 @@ class User(UserMixin,db.Model):
     username = db.Column(db.String(64), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
 
-@app.route("/")
+@app.route("/") # <--- Add GET and POST methods!!!!!
 @login_required
 def index():
     # Index page
