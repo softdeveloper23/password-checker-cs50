@@ -12,6 +12,10 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'  # Or other database URI
 db = SQLAlchemy(app)
 
+# Initialize Flask-Login
+login_manager = LoginManager()
+login_manager.init_app(app)
+
 class User(db.Model):
     # Define your User model with fields for username, hashed password, etc.
     id = db.Column(db.Integer, primary_key=True)
