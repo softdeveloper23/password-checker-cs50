@@ -3,7 +3,7 @@ import datetime
 import requests
 import hashlib
 
-from flask import Flask, render_template, request, redirect, url_for, session, login_user
+from flask import Flask, render_template, request, redirect, url_for, session
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -97,9 +97,14 @@ def check_password():
         hashes = (line.split(':') for line in response.text.splitlines())
         count = next((int(count) for t, count in hashes if t == suffix), 0)
 
-        # Store the checked password and result in the database
+        # Create a new instance of CheckedPassword
+        checked_password = CheckedPassword(password_hash=hash, result=bool(count))
 
+        # Add the checked password to the database
+        db.session.add(checked_password)
+        db.session.commit()
 
+        # Check if the password has been found
         if count:
             return f'The password has been found! This password has been seen {count} times before', 200
         else:
