@@ -4,7 +4,7 @@ import requests
 import hashlib
 
 
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -75,7 +75,7 @@ def register():
         db.session.commit()
 
         # Flash a success message
-
+        flash('Your account has been created successfully, please login.')
         # redirect to login page
         return redirect(url_for('login'))
 
@@ -125,15 +125,18 @@ def check_password():
 
         # Check if the password has been found
         if count:
-            return f'The password has been found! This password has been seen {count} times before', 200
+            flash(f'The password has been found! This password has been seen {count} times before', 200)
         else:
-            return 'The password has not been found!', 200
-    return render_template('check_password.html')
+            flash(f'The password has not been found!', 200)
+
+    return render_template('index.html')
 
 @app.route('/logout')
 @login_required
 def logout():
     logout_user()
+    # Flash a success message
+    flash('You have been logged out successfully.')
     return redirect(url_for('index'))  # Or redirect to any other page
 
 if __name__ == '__main__':
