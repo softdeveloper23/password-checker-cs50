@@ -3,6 +3,7 @@ import datetime
 import requests
 import hashlib
 
+
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
@@ -11,8 +12,12 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 # Import other necessary modules and functions
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///password_checker.db'
 db = SQLAlchemy(app)
+
+with app.app_context():
+    db.create_all()
 
 # Initialize Flask-Login
 login_manager = LoginManager()
