@@ -11,7 +11,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 # Import other necessary modules and functions
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'  # Or other database URI
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///password_checker.db'
 db = SQLAlchemy(app)
 
 # Initialize Flask-Login
