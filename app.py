@@ -129,6 +129,10 @@ def login():
         if user and check_password_hash(user.password_hash, password):
             # Log the user in
             login_user(user)
+
+            # Flash a success message
+            flash('You have been logged in successfully.')
+
             return redirect(url_for('index'))
         else:
             return apology('Invalid username or password', 400)
