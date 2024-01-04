@@ -111,11 +111,17 @@
                 }
 
                 // Call the function when the DOM is fully loaded
-                document.addEventListener("DOMContentLoaded", function(event) { 
+                document.addEventListener("DOMContentLoaded", function(event) {
                 typeWriter3();
                 });
                 </script>
     </body>
+
+    <!-- Using this main element for the apology.html page image and messages -->
+    <main class="container-fluid2 py-5 text-center">  <!-- Using container-fluid2 because CSS already uses container-fluid -->
+        {% block main %}{% endblock %}
+    </main>
+
     <footer>
         <p id="copyright">
             Created by Brannon Garrett &copy; <span id="currentYear"></span>

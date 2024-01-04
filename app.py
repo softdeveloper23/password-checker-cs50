@@ -57,13 +57,31 @@ def index():
 def register():
     # Handle user registration
     if request.method == 'POST':
+
+        # Ensure username was submitted
+        if not request.form['username']:
+            return apology("must provide username", 400)
+
+        # Ensure password was submitted
+        elif not request.form['password']:
+            return apology("must provide password", 400)
+
+        # Ensure password was confirmed
+        elif not request.form['confirmation']:
+            return apology("must confirm password", 400)
+
+        # Ensure password and confirmation match
+        elif request.form['password'] != request.form['confirmation']:
+            return apology("passwords do not match", 400)
+
+        # Get the username and password from the form
         username = request.form.get('username')
         password = request.form.get('password')
 
         # Check if username is already taken
         user = User.query.filter_by(username=username).first()
         if user:
-            return 'Username already exists. Please choose another username.'
+            return apology('Username already exists. Please choose another username.', 400)
 
         # Hash the password
         password_hash = generate_password_hash(password)
@@ -91,6 +109,16 @@ def load_user(user_id):
 def login():
     # Handle user login
     if request.method == 'POST':
+
+        # Ensure username was submitted
+        if not request.form['username']:
+            return apology("must provide username", 400)
+
+        # Ensure password was submitted
+        elif not request.form['password']:
+            return apology("must provide password", 400)
+
+        # Get the username and password from the form
         username = request.form.get('username')
         password = request.form.get('password')
 
@@ -103,7 +131,7 @@ def login():
             login_user(user)
             return redirect(url_for('index'))
         else:
-            return 'Invalid username or password'
+            return apology('Invalid username or password', 400)
 
     return render_template('login.html')
 
@@ -139,6 +167,19 @@ def logout():
     # Flash a success message
     flash('You have been logged out successfully.')
     return redirect(url_for('index'))  # Or redirect to any other page
+
+# Error handlers
+@app.errorhandler(404)
+def not_found_error(error):
+    return apology('Page not found', 404)
+
+@app.errorhandler(500)
+def internal_error(error):
+    # Rollback the session in case a database error occurred
+    db.session.rollback()
+    return apology('An internal error occurred', 500)
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
