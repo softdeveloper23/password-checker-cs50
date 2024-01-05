@@ -50,6 +50,13 @@ class CheckedPassword(db.Model):
     password_hash = db.Column(db.String(128), nullable=False)
     result = db.Column(db.Boolean, nullable=False)
 
+# Create a form class for the login form
+class RegisterForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired(), Length(min=4, max=25)])
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=8)])
+    confirmation = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password', message="Passwords don't match")])
+
+
 @app.route("/")
 def index():
     if current_user.is_authenticated:
