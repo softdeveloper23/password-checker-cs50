@@ -66,50 +66,26 @@ def index():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    # Handle user registration
-    if request.method == 'POST':
-
-        # Ensure username was submitted
-        if not request.form['username']:
-            return apology("must provide username", 400)
-
-        # Ensure password was submitted
-        elif not request.form['password']:
-            return apology("must provide password", 400)
-
-        # Ensure password was confirmed
-        elif not request.form['confirmation']:
-            return apology("must confirm password", 400)
-
-        # Ensure password and confirmation match
-        elif request.form['password'] != request.form['confirmation']:
-            return apology("passwords do not match", 400)
-
-        # Get the username and password from the form
-        username = request.form.get('username')
-        password = request.form.get('password')
-
+    form = RegisterForm()
+    if form.validate_on_submit():
+        username = form.username.data
+        password = form.password.data
         # Check if username is already taken
         user = User.query.filter_by(username=username).first()
         if user:
             return apology('Username already exists. Please choose another username.', 400)
-
         # Hash the password
         password_hash = generate_password_hash(password)
-
         # Create a new user instance
         new_user = User(username=username, password_hash=password_hash)
-
         # Add the new user to the database
         db.session.add(new_user)
         db.session.commit()
-
         # Flash a success message
         flash('Your account has been created successfully, please login.')
         # redirect to login page
         return redirect(url_for('login'))
-
-    return render_template('register.html')
+    return render_template('register.html', form=form)
 
 # User loader callback for Flask-Login
 @login_manager.user_loader
