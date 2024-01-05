@@ -133,3 +133,7 @@ footer {
     text-align: center;
 }
 
+#password-strength-text {
+    font-weight: bold;
+}
+
