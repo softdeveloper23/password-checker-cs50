@@ -183,10 +183,16 @@
                     function togglePasswordVisibility(fieldId) {
                         var passwordField = document.getElementById(fieldId);
                         var passwordFieldType = passwordField.getAttribute('type');
+                        var eyeIcon = document.getElementById('eye-icon-' + fieldId);
+
                         if (passwordFieldType === 'password') {
                             passwordField.setAttribute('type', 'text');
+                            eyeIcon.classList.remove('fa-eye');
+                            eyeIcon.classList.add('fa-eye-slash');
                         } else {
                             passwordField.setAttribute('type', 'password');
+                            eyeIcon.classList.remove('fa-eye-slash');
+                            eyeIcon.classList.add('fa-eye');
                         }
                     }
                     </script>
