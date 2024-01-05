@@ -142,6 +142,39 @@
                     });
                 </script>
 
+                <!-- Password strength meter script -->
+                <script>
+                    document.addEventListener('DOMContentLoaded', (event) => {
+                        const passwordInput = document.getElementById('password');
+                        const passwordStrengthProgress = document.getElementById('passwordStrengthProgress');
+                        const passwordStrengthText = document.getElementById('passwordStrengthText');
+
+                        passwordInput.addEventListener('input', () => {
+                            const password = passwordInput.value;
+                            let strength = 0;
+
+                            // Calculate password strength (this is a simple example, you can use more complex logic)
+                            if (password.length >= 8) strength += 20;
+                            if (/[A-Z]/.test(password)) strength += 20;
+                            if (/[a-z]/.test(password)) strength += 20;
+                            if (/[0-9]/.test(password)) strength += 20;
+                            if (/[\W]/.test(password)) strength += 20;
+
+                            // Update the meter
+                            passwordStrengthProgress.value = strength;
+
+                            // Update the text
+                            if (strength < 40) {
+                                passwordStrengthText.textContent = 'Weak';
+                            } else if (strength < 80) {
+                                passwordStrengthText.textContent = 'Moderate';
+                            } else {
+                                passwordStrengthText.textContent = 'Strong';
+                            }
+                        });
+                    });
+                </script>
+
     </body>
 
     <!-- Using this main element for the apology.html page image and messages -->
