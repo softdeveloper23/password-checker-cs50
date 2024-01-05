@@ -17,14 +17,18 @@ Register
     <br>
     <label for="password">Password:</label><br>
     {{ form.password() }}
-    <button type="button" onclick="togglePasswordVisibility('password')">Show/Hide</button>
+    <button type="button" onclick="togglePasswordVisibility('password')" class="eye-button">
+        <i id="eye-icon-password" class="fas fa-eye"></i>
+    </button>
     {% for error in form.password.errors %}
     <span style="color: red;">{{ error }}</span>
     {% endfor %}
     <br>
     <label for="confirmation">Confirm Password:</label><br>
     {{ form.confirmation() }}
-    <button type="button" onclick="togglePasswordVisibility('confirmation')">Show/Hide</button>
+    <button type="button" onclick="togglePasswordVisibility('password')" class="eye-button">
+        <i id="eye-icon-password" class="fas fa-eye"></i>
+    </button>
     {% for error in form.confirmation.errors %}
     <span style="color: red;">{{ error }}</span>
     {% endfor %}
