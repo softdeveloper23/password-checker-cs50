@@ -142,3 +142,19 @@ footer {
     border: none;
     cursor: pointer;
 }
+
+#register-text {
+    font-size: 2vw; /* Adjust the size as needed */
+    font-weight: bold;
+    font-family: 'Courier', sans-serif;
+    text-align: center;
+    color: black;
+}
+
+#login-text {
+    font-size: 2vw; /* Adjust the size as needed */
+    font-weight: bold;
+    font-family: 'Courier', sans-serif;
+    text-align: center;
+    color: black;
+}
