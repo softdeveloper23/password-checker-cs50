@@ -26,8 +26,8 @@ Register
     <br>
     <label for="confirmation">Confirm Password:</label><br>
     {{ form.confirmation() }}
-    <button type="button" onclick="togglePasswordVisibility('password')" class="eye-button">
-        <i id="eye-icon-password" class="fas fa-eye"></i>
+    <button type="button" onclick="togglePasswordVisibility('confirmation')" class="eye-button">
+        <i id="eye-icon-confirmation" class="fas fa-eye"></i>
     </button>
     {% for error in form.confirmation.errors %}
     <span style="color: red;">{{ error }}</span>

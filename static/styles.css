@@ -137,3 +137,8 @@ footer {
     font-weight: bold;
 }
 
+.eye-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
