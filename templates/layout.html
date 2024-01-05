@@ -175,6 +175,19 @@
                     });
                 </script>
 
+                <!-- Show/Hide password script -->
+                <script>
+                    function togglePasswordVisibility(fieldId) {
+                        var passwordField = document.getElementById(fieldId);
+                        var passwordFieldType = passwordField.getAttribute('type');
+                        if (passwordFieldType === 'password') {
+                            passwordField.setAttribute('type', 'text');
+                        } else {
+                            passwordField.setAttribute('type', 'password');
+                        }
+                    }
+                    </script>
+
     </body>
 
     <!-- Using this main element for the apology.html page image and messages -->
