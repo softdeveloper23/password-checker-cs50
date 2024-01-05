@@ -119,3 +119,17 @@ footer {
     text-align: center;
     color: black;
   }
+
+  /* styles.css */
+.password-strength-meter {
+    margin-top: 10px;
+}
+
+.password-strength-meter progress {
+    width: 100%;
+}
+
+.password-strength-meter p {
+    text-align: center;
+}
+
