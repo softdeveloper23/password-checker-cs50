@@ -1,10 +1,19 @@
 # Password Checker
-#### Video Demo:  <URL HERE>
+#### Video Demo:  https://youtu.be/mrRRXgkaSQU
 #### Description:
-Project: Password Checker
-The Password Checker is a web application designed to help users check the strength and security of their passwords. The project is built using Python and Flask, and it incorporates various HTML and CSS elements for the frontend.
+Project: Password Checker by Brannon Garrett
+
+The Password Checker is a web application designed to help users check the if any password has been seen around the internet before and how many times it has been seen. The project is built using Python and Flask, and it incorporates various HTML and CSS elements for the frontend. The project also uses Python, SQL, JavaScript, Bootstrap, the api.pwnedpasswords, Jinja2, and Font Awesome.
 
 File Descriptions
+
+app.py
+
+This is the main application file. It sets up the Flask application, configures the database, defines the User and CheckedPassword models, and contains all the routes for the application. It handles user registration, login, password checking, and history viewing.
+
+history.html
+
+This HTML file extends the layout.html file and contains a table that displays the history of checked passwords. It shows the hashed password, the number of times it has been seen, and the date and time it was checked.
 
 layout.html
 
@@ -15,6 +24,10 @@ register.html
 
 This file extends the layout.html file and contains the form for user registration. It includes fields for username, password, and password confirmation. Each field includes error handling to display messages if the input is invalid.
 The register.html file also includes a password strength meter, which provides visual feedback on the strength of the entered password. This is implemented using a progress bar and text that updates based on the calculated strength of the password.
+
+index.html
+
+This HTML file extends the layout.html file and contains a form for users to check any password. It also includes a loading spinner for visual feedback during processing.
 
 Design Choices
 
