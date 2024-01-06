@@ -1,1 +1,20 @@
-<!-- TODO: Add code for the history page -->
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Password Checked</th>
+            <th scope="col">Times Seen</th>
+            <th scope="col">Date Checked</th>
+            <th scope="col">Time Checked</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for password in password_history %}
+        <tr>
+            <td>{{ password.password_hash }}</td>
+            <td>{{ password.times_seen }}</td>
+            <td>{{ password.date_checked }}</td>
+            <td>{{ password.time_checked }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
