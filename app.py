@@ -139,12 +139,13 @@ def check_password():
         response = requests.get(f'https://api.pwnedpasswords.com/range/{prefix}')
         hashes = (line.split(':') for line in response.text.splitlines())
         count = next((int(count) for t, count in hashes if t == suffix), 0)
-
-        # Create a new instance of CheckedPassword
-        checked_password = CheckedPassword(password_hash=hash, result=bool(count))
-
-        # Add the checked password to the database
-        db.session.add(checked_password)
+        checked_password = CheckedPassword.query.filter_by(password_hash=hash).first()
+        if checked_password:
+            checked_password.times_seen += 1
+        else:
+            checked_password = CheckedPassword(password_hash=hash, times_seen=1, date_checked=datetime.date.today(),
+            time_checked=datetime.datetime.now().time(), result=bool(count))
+            db.session.add(checked_password)
         db.session.commit()
 
         # Check if the password has been found
