@@ -175,6 +175,14 @@ def internal_error(error):
     db.session.rollback()
     return apology('An internal error occurred', 500)
 
+# Create a route for the history page
+@app.route('/history')
+@login_required
+def history():
+    password_history = CheckedPassword.query.all()
+    return render_template('history.html', password_history=password_history)
+
+
 
 
 if __name__ == '__main__':
