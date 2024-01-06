@@ -48,7 +48,11 @@ class User(UserMixin,db.Model):
 class CheckedPassword(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     password_hash = db.Column(db.String(128), nullable=False)
+    times_seen = db.Column(db.Integer, nullable=False)
+    date_checked = db.Column(db.DateTime, nullable=False)
+    time_checked = db.Column(db.Time, nullable=False)
     result = db.Column(db.Boolean, nullable=False)
+
 
 # Create a form class for the login form
 class RegisterForm(FlaskForm):
