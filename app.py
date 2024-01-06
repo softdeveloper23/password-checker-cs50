@@ -21,9 +21,6 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///password_checker.db'
 db = SQLAlchemy(app)
 
-with app.app_context():
-    db.create_all()
-
 # Ensure templates are auto-reloaded
 @app.after_request
 def after_request(response):
@@ -60,6 +57,8 @@ class RegisterForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired(), Length(min=8)])
     confirmation = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password', message="Passwords don't match")])
 
+with app.app_context():
+    db.create_all()
 
 @app.route("/")
 def index():
