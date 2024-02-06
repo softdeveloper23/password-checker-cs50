@@ -2,7 +2,7 @@
 #### Video Demo:  https://youtu.be/mrRRXgkaSQU
 
 #### Project Image:
-![Project screenshot](diagram/nasa-mission-control-diagram.png)
+![Project screenshot](project-image/pchecker.png)
 
 #### Description:
 Project: Password Checker by Brannon Garrett
