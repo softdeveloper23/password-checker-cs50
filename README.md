@@ -44,3 +44,7 @@ The decision to use Flask for this project was based on its simplicity and flexi
 The use of Bootstrap for styling was chosen for its ease of use and wide range of components. It allows for responsive design, ensuring the application looks good on various screen sizes.
 The password strength meter was included to provide immediate feedback to the user about the strength of their password. This encourages users to choose stronger, more secure passwords.
 The project is designed to be simple yet functional, providing a useful service while also demonstrating various aspects of web development with Python and Flask.
+
+## See It In Action
+
+Visit the link in the About section to see the project live. 
