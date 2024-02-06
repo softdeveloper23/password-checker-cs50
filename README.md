@@ -1,10 +1,15 @@
 # Password Checker
 #### Video Demo:  https://youtu.be/mrRRXgkaSQU
 
-#### Project Image:
+#### Project Image
 ![Project screenshot](project-image/pchecker.png)
 
-#### Description:
+## Deployment
+
+Password Checker has been deployed to Heroku using a Docker container.
+
+## Description
+
 Project: Password Checker by Brannon Garrett
 
 The Password Checker is a web application designed to help users check if any password has been seen around the internet before and how many times it has been seen. The project is built using Python and Flask, and it incorporates various HTML and CSS elements for the frontend. The project also uses Python, SQL, JavaScript, Bootstrap, and the api.pwnedpasswords, Jinja2, and Font Awesome.
