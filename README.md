@@ -1,9 +1,13 @@
 # Password Checker
 #### Video Demo:  https://youtu.be/mrRRXgkaSQU
+
+#### Project Image:
+![Project screenshot](diagram/nasa-mission-control-diagram.png)
+
 #### Description:
 Project: Password Checker by Brannon Garrett
 
-The Password Checker is a web application designed to help users check the if any password has been seen around the internet before and how many times it has been seen. The project is built using Python and Flask, and it incorporates various HTML and CSS elements for the frontend. The project also uses Python, SQL, JavaScript, Bootstrap, the api.pwnedpasswords, Jinja2, and Font Awesome.
+The Password Checker is a web application designed to help users check if any password has been seen around the internet before and how many times it has been seen. The project is built using Python and Flask, and it incorporates various HTML and CSS elements for the frontend. The project also uses Python, SQL, JavaScript, Bootstrap, and the api.pwnedpasswords, Jinja2, and Font Awesome.
 
 ## File Descriptions
 
